@@ -19,17 +19,19 @@ WORKER_NUM = 2
 WORKER_CPU = 1
 WORKER_MEM = 1024
 
+IP_BASE = "10.25.1."
+
 Vagrant.configure("2") do |config|
 
   ## Provision Master Nodes -------------------------
-  (1..MASTERS_NUM).each do |i|      
-    config.vm.define "#{MASTERS_NAME}#{i}" do |master|
+  (1..MASTER_NUM).each do |i|      
+    config.vm.define "#{MASTER_NAME}#{i}" do |master|
         master.vm.box = IMAGE_NAME
         master.vm.network "private_network", ip: "#{IP_BASE}#{i + 99*i}"
-        master.vm.hostname = "#{MASTERS_NAME}#{i}"
+        master.vm.hostname = "#{MASTER_NAME}#{i}"
         master.vm.provider "virtualbox" do |v|
-            v.memory = MASTERS_MEM
-            v.cpus = MASTERS_CPU
+            v.memory = MASTER_MEM
+            v.cpus = MASTER_CPU
         end
         #config.vm.provision "shell", path: "bootstrap.sh"
         #config.vm.provision "shell", path: "master-bootstrap.sh"
@@ -37,7 +39,7 @@ Vagrant.configure("2") do |config|
   end
 
   ## Provision Worker Nodes -------------------------
-  (1..NODES_NUM).each do |j|
+  (1..WORKER_NUM).each do |j|
     config.vm.define "#{WORKER_NAME}#{j}" do |node|
         node.vm.box = IMAGE_NAME
         node.vm.network "private_network", ip: "#{IP_BASE}#{j + 100}"
