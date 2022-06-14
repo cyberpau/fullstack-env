@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
             v.memory = MASTER_MEM
             v.cpus = MASTER_CPU
         end
-        #config.vm.provision "shell", path: "bootstrap.sh"
+        config.vm.provision "shell", path: "bootstrap.sh"
         #config.vm.provision "shell", path: "master-bootstrap.sh"
     end
   end
@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
             v.memory = WORKER_MEM
             v.cpus = WORKER_CPU
         end
-        #config.vm.provision "shell", path: "bootstrap.sh"
+        config.vm.provision "shell", path: "bootstrap.sh"
         #config.vm.provision "shell", path: "worker-bootstrap.sh"
     end
   end
