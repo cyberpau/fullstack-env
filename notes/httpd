@@ -1,0 +1,15 @@
+# Apache HTTP Server
+
+```
+// Install Apache HTTP Server
+sudo yum install httpd
+systemctl start httpd
+systmctl enable httpd
+
+
+// Modify configurations
+sudo vi /etc/httpd/conf/httpd.conf
+
+
+```
+
